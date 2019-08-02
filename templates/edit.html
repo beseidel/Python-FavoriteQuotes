@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+        <title>dashboard</title>
+</head>
+
+
+<body>
+<div class="container">
+<!-- NAV SECTION -->
+<!-- contains navigation links and (potentially serch bar) -->
+    <div class="nav">
+        <!-- <div id="search_container">
+            <input class="search" type="search" name="Search" id="placeholder">
+            <button><input class="search_btn" type="submit" value="search"/>
+            </button>
+        </div> -->
+
+    <table>
+    <tr>
+        <td><th> Welcome {{session['mickeys_first_name']}}  </th></td>
+        <td>
+    </tr>
+    </table>
+    <table>
+    <tr>
+        <td><th><a class="a" href='/logout'>Log Out</a></th>
+        </td><td> I </td>
+        <td><th><a class="a" href='/dashboard'>Back To Main DashBoard</a></th>
+        </td>
+    </tr>
+    </table>
+
+
+    </div>
+<!-- END NAVOGATION -->
+
+<!-- MAIN SECTION -->
+<div class="main">
+
+
+<!-- WELCOME BAR -->
+    <table class="wall_table">
+        <th>Updates by {{session['mickeys_first_name']}}</th>
+        <th><a class="a"  href='/logout'>Log Out</a></th>
+        <th><a class="a" href='/dashboard'>Dashboard</a></th>
+       
+    </table>
+  
+<!-- #END OF WELCOME BAR -->
+
+
+<!-- UPDATE BOOK BOX -->
+<!-- NEW BOOK BOX -->
+
+    <div class="form_content_box">
+        <form action="/update_book/{{book[0]['id_book']}}" method="post">
+            <br></br>
+        <form_header>Update Book</form_header>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                            <p class="messages">{{message}}</p> 
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br></br>
+        <label>Title</label>
+        
+                <input class="input" type="text" value="{{book[0]['book_title']}}"name="book_name" placeholder="Insert Book Title"/>
+                <input class="input" type="hidden" name="" placeholder="Insert Book Title"/>
+                    <br></br>
+        <label>Description</label>
+                <input class="input" type="text" value=" {{book[0]['book_description']}} " name="book_summary" placeholder="Insert Book Description"/>
+                    <br></br>
+        <input class="btn" type="submit" value="Update"/>
+        </form>
+        
+    </div>
+<!-- END BOOK BOX -->
+
+<!-- SHOW ALL BOOKS -->
+        <div class ="books_table">
+            <br></br>
+            <h1>Show Update Here</h1>
+           
+            <br></br>
+            <table>
+            <tr><td><a class="a" href='/dashboard'>Back to Books</a></td></tr>
+            <br></br>
+            <tr><td>
+            <a class="a" href='/delete/{{book[0]['id_book']}}'</a>Delete</td></tr>
+            </table>
+            <table>
+            
+            <tr>
+                <td><b>Book Title:</b>{{book[0]['book_title']}} 
+                <a class="a"  href='/edit/{{book['id_book']}}'></td>
+        
+            <tr>
+                <td><b>Book Description:</b> {{book[0]['book_description']}}</td>
+            </tr>
+            <tr>
+                <td><b>Updated by: </b>{{book[0]['first_name']}}{{book[0]['last_name']}}<br></br></td>
+            </tr>
+            <tr><td>
+            <hr></td>
+            </tr>
+            </table>
+            
+<!-- END SHOWING BOOKS -->
+    </div>
+<!-- END MAIN CONTAINER -->
+    </div>
+<!-- END CONTAINER -->
+</body>
+</html>

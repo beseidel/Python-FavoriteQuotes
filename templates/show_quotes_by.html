@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+        <title>dashboard</title>
+</head>
+
+
+<body>
+<div class="container">
+<!-- NAV SECTION -->
+<!-- contains navigation links and (potentially serch bar) -->
+    <div class="nav">
+        <!-- <div id="search_container">
+            <input class="search" type="search" name="Search" id="placeholder">
+            <button><input class="search_btn" type="submit" value="search"/>
+            </button>
+        </div> -->
+
+        <a class="a"  href='/'>Home</a>&nbsp;&nbsp;&nbsp;
+        <a class="a"  href='/logout'>Log Out</a>
+        <br></br>
+    </div>
+<!-- END NAVOGATION -->
+
+<!-- MAIN SECTION -->
+<div class="main">
+<!-- WELCOME BAR -->
+    <table class="wall_table">
+        <tr>
+        <th> Welcome {{session['mickeys_first_name']}}</th>
+        <th><a class="a"  href='/logout'>Log Out</a></th>
+        <th><a class="a" href='/dashboard'>Dashboard</a></th>
+        </tr>
+    </table>
+
+
+<!-- SHOW ONE quote -->
+
+        <div class ="show_one_quote">
+            <br></br>
+            <h1>POSTS BY </b>{{all_quotes[0]['name']}}  ({{all_quotes[0]['alias']}})<br> </h1>
+          
+            Total Quotes: {{golds[0]['COUNT(*)']}}
+        
+     <table>
+            <tr> <td>{% for quote in all_quotes %} </td>
+            </tr>
+            <tr>
+                <td><b>Quoted Person:</b>{{quote['q_author']}} 
+                </td>
+            </tr>
+            <tr>
+                <td><b>Quote Content:</b> {{quote['id_content']}}</td>
+            </tr>
+            <tr>
+                <td><b>Posted by: </b>{{quote['name']}}  ({{quote['alias']}})<br></br><hr></td>
+              
+            </tr>
+            <!-- <tr>
+                <tr>            {% if quote['id_user']==session['id_mickey_user'] %}
+                <td><a class="a" href='/edit/{{quote['id_quote']}}'>Edit</a></td>
+                                {% endif %}
+            </tr> -->
+          
+            <tr>
+            </tr>
+           {% endfor %}
+            </table>
+     
+<!-- 
+            <a href="/favorites">Add a Favorite</a>    
+            <input class="btn" type="submit" value="Add to favorites"/> -->
+            
+        </div>
+    </div>
+</div>
+</div>
+</body>
+
+</html>

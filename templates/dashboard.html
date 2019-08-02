@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+        <title>dashboard</title>
+</head>
+
+
+<body>
+<div class="container">
+<!-- NAV SECTION -->
+<!-- contains navigation links and (potentially serch bar) -->
+    <div class="nav">
+        <
+
+        <a class="a"  href='/'>Home</a>&nbsp;&nbsp;&nbsp;
+        <a class="a"  href='/logout'>Log Out</a>
+        <br></br>
+    </div>
+<!-- END NAVOGATION -->
+
+<!-- MAIN SECTION -->
+<div class="main">
+<!-- WELCOME BAR -->
+    <table class="wall_table">
+        <tr>
+        <th> Welcome {{session['mickeys_first_name']}}</th>
+        <th><a class="a"  href='/logout'>Log Out</a></th>
+        <th><a class="a" href='/dashboard'>Dashboard</a></th>
+        </tr>
+    </table>
+
+<!-- SHOW ALL BOOKS -->
+        <div class ="books_table">
+            <h1>Quotable Quotes</h1>
+            <!-- {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="messages">{{message}}</p>                   
+                    {% endfor %}
+                {% endif %}
+            {% endwith %} -->     
+            <tr><td>{% for quote in all_quotes %}</td></tr>
+            <table>
+                  
+
+            <tr><td><b>Quoted Person:  </b>{{quote['q_author']}}</td></tr>
+
+            <tr><td><b>Quote Content:  </b> {{quote['id_content']}}</td></tr>
+            
+            <tr><td><b>Posted by: </b>{{quote['name']}} ({{quote['alias']}})
+            </td></tr>
+            
+            <tr><td><a class="a" href='/show_one_quote/{{quote['id_contributor']}}'>Quotes Posted by {{quote['name']}}/{{quote['id_quote']}}</a></td></tr>
+            
+            <tr><br></br><hr></tr>
+            </table>
+            {% endfor %}
+        </div>
+
+        <!-- NEW BOOK BOX -->
+    <div class="form_content_box">
+        <form action='/add_quote' method="post">
+            <br></br>
+        <form_header>Contribute A Quote</form_header>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                            <p class="messages">{{message}}</p> 
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br></br>
+          
+        <label>Quoted by:</label>
+                <input class="input" type="text" name="q_name" placeholder="Insert Person's Name"/>
+                <!-- <input class="input" type="hidden" name="" placeholder="Insert Quote"/>
+                    <br></br> -->
+        <label>Message</label>
+                <input class="input" type="text" name="q_cont" placeholder="Insert Quote Content"/>
+                    <br></br>
+                   
+        <input type="hidden" value="id_contributor"/>
+        <input class="btn" type="submit" value="SUBMIT"/>
+        </form>
+      
+    </div>
+<!-- END BOOK BOX -->
+    </div>
+</div>
+</div>
+</body>
+</html>
+

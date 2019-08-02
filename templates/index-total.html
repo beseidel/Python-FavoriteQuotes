@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <title>form</title>
+
+</head>
+
+<body>
+
+<div class="fluid_container">
+
+    <div class="nav">
+
+    <div id="search_container">
+        <input class="search" type="search" name="Search" id="placeholder">
+        <button><input class="search_btn" type="submit" value="search"/>
+        </button>
+    </div>
+    <a class="a"  href="/">Home</a>&nbsp;&nbsp;&nbsp;
+     <a class="a"  href="/logout">Logout</a>&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="image_img"></div>
+
+<div class="main">
+
+    <div class='register_box'>
+       
+            <form action='/register' method="post">
+            <br></br>
+            <form_header>REGISTER TO LOGIN</form_header>
+           
+            
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                        <p class="messages">{{message}}</p>                   
+                        {% endfor %}
+                            {% endif %}
+                                {% endwith %}
+                    <br></br>
+
+        <label>Name</label>
+                <input class="input" type="text" name="name" placeholder="insert first name"/>
+            
+                    <br></br>
+
+        <label>Alias</label>
+                <input class="input" type="text" name="alias" placeholder="insert alias name"/>
+            
+                    <br></br>
+        <label>Enter Email  
+                <input class="input" type="text" name="email" placeholder="insert email"/></label>
+                    <br></br>
+        <label>Enter Password  
+                <input class="input" type="text" name="pw" placeholder="insert password"/></label>
+                    <br></br>
+        <label>Confirm Password  <input class="input" type="text" name="cpw" placeholder="confirm password"/></label>
+                    <br></br>
+        <label>Date of Birth : </label><input id="date" type="date" name="b_dat" value="00-00-1900"/> 
+                    <br></br>
+        <input class="btn" type="submit" value="Register"/>
+
+</form>
+
+    </div>
+
+    <div class='box2'>
+        
+        <div class ="login">
+       <br></br>
+        <form action='/login' method="post">
+           
+        <form_header>LOG IN</form_header>
+          {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+        <p class="messages">{{message}}</p>                   
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+                <br></br>
+                    <br></br>
+      
+            <label>Enter Email</label> 
+            <input class="input" type="text" name="email" placeholder="insert email"/></p>
+                    <br></br>
+            <label>Enter Password</label>  
+            <input class="input" type="text" name="pw" placeholder="insert password"/></p>
+
+                    <br></br>
+            <button><input class="btn" type="submit" value="Login"/></button>
+       
+
+              <br></br>
+            <button><input class="btn2" type="submit" value="Create a new account"/></button>
+            
+        </form>
+
+
+
+</div>
+
+</div>
+
+
+
+<!-- <table>
+<tr>
+    <th>ID</th><th>Full Name</th><EMAIL></th><th>Created At</th><th>Actions</th>
+{% for user in all_users %}
+</tr>
+    <td>{{user['id_user']}}</td><td>{{ user['first_name'] }} {{ user['last_name'] }}</td><td>{{ user['email'] }}</td><td><a href="http:/users/create/show_one_user/{{user['id_user']}}">Show</a>I<a href="http:/users/edit_form/{{user['id_user']}}">Edit</a>I<a href="http:/users/delete/{{user['id_user']}}">Delete</a></td>   -->
+<!-- {% endfor %} -->
+<!-- </table> --> 
+<div class="foot">
+<p>Footer</p>
+
+</div>
+
+
+
+</div>
+</body>
+
+</html>

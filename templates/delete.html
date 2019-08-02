@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    Book Sucessfully deleted
+
+
+{% for book in all_books %}
+<h1>Edit Book {{book['id_book']}}</h1>
+    <p>  Title  {{ user['first_name'] }}</p>  
+    <p>  Description  {{ user['last_name'] }}</p> 
+{% endfor %}
+
+<table>
+<tr>
+    <th>ID</th><th>Full Name</th><EMAIL></th><th>Created At</th><th>Actions</th>
+{% for book in all_books %}
+</tr>
+    <td>{{user['id_user']}}</td><td>{{ user['first_name'] }} {{ user['last_name'] }}</td><td>{{ user['email'] }}</td><td><a href="http:/add_book/{{book['id_book']}}">Show</a>I<a href="http:/edit/{{book['id_book']}}">Edit</a>I<a href="http:/delete/{{book['id_book']}}">Delete</a></td>  
+{% endfor %}
+</table>
+
+</body>
+</html>
